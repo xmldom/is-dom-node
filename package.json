@@ -1,0 +1,26 @@
+{
+  "name": "is-dom-node",
+  "version": "1.0.0",
+  "description": "TypeScript helper functions to narrow the type of object to a Node descendant",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run tsc && nyc mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmldom/is-dom-node.git"
+  },
+  "keywords": [
+    "dom",
+    "node",
+    "typescript",
+    "narrow",
+    "guard"
+  ],
+  "author": "Chris Barth <chrisjbarth@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xmldom/is-dom-node/issues"
+  },
+  "homepage": "https://github.com/xmldom/is-dom-node#readme"
+}
