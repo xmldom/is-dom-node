@@ -1,18 +1,19 @@
 # is-dom-node
 
-![Build Status](https://img.shields.io/travis/cjbarth/is-dom-node)
-![Code Coverage](https://img.shields.io/codecov/c/github/cjbarth/is-dom-node)
-![NPM Version](https://img.shields.io/npm/v/is-dom-node)
-![License](https://img.shields.io/npm/l/is-dom-node)
+![Build Status](https://img.shields.io/travis/xmldom/is-dom-node)
+![Code Coverage](https://img.shields.io/codecov/c/github/xmldom/is-dom-node)
+![NPM Version](https://img.shields.io/npm/v/@xmldom/is-dom-node)
+![License](https://img.shields.io/npm/l/@xmldom/is-dom-node)
 
 ## Description
 
-`is-dom-node` is a versatile TypeScript library designed to provide robust utility functions for working with DOM nodes. Whether you're developing for the browser or dealing with XML in NodeJS, this library offers a comprehensive set of functions for checking and asserting various types of DOM nodes. It's particularly useful when working with NodeJS libraries like `xpath` and `xmldom`, as it can validate the objects returned by these libraries.
+`@xmldom/is-dom-node` is a versatile TypeScript library designed to provide robust utility functions for working with DOM nodes. Whether you're developing for the browser or dealing with XML in NodeJS, this library offers a comprehensive set of functions for checking and asserting various types of DOM nodes. It's particularly useful when working with NodeJS libraries like [xpath](https://www.npmjs.com/package/xpath) and [@xmldom/xmldom](https://www.npmjs.com/package/@xmldom/xmldom), as it can validate the objects returned by these libraries.
+
 
 ## Installation
 
 ```shell
-npm install is-dom-node
+npm install @xmldom/is-dom-node
 ```
 
 ## Usage
@@ -20,7 +21,7 @@ npm install is-dom-node
 Import the library and use it as follows:
 
 ```javascript
-import * as isDomNode from 'is-dom-node';
+import * as isDomNode from '@xmldom/is-dom-node';
 
 const element = document.createElement('div');
 const result = isDomNode.isElementNode(element); // Output: true
@@ -29,7 +30,7 @@ const result = isDomNode.isElementNode(element); // Output: true
 ### TypeScript Example
 
 ```typescript
-import * as isDomNode from 'is-dom-node';
+import * as isDomNode from '@xmldom/is-dom-node';
 
 function handleNode(node: Node) {
   if (isDomNode.isElementNode(node)) {
@@ -80,7 +81,7 @@ Both the `is...` and `assertIs...` functions can be used for TypeScript type nar
 - Lightweight
 - Written in TypeScript
 - Comprehensive tests
-- Compatible with NodeJS XML libraries like `xpath` and `xmldom`
+- Compatible with NodeJS XML libraries like `xpath` and `@xmldom/xmldom`
 
 ## Contributing
 

@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "changelog": "gren changelog --override --generate --head master",
+    "changelog": "gren changelog --override --generate --head main",
     "lint": "eslint --ext .ts \"**/*.ts\" --cache && npm run prettier-check",
     "lint:fix": "eslint --ext .ts --fix src && npm run prettier-format",
     "prepare": "tsc",
