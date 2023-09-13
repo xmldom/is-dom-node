@@ -1,8 +1,8 @@
-import * as is_dom_node from "../src/index";
+import * as isDomNode from "../src/index";
 import assert from "assert";
-import { DOMParser as dom } from "@xmldom/xmldom";
+import { DOMParser } from "@xmldom/xmldom";
 
-const parser = new dom();
+const parser = new DOMParser();
 
 const parseXml = (xml: string, mimeType = "text/xml") => parser.parseFromString(xml, mimeType);
 
@@ -11,13 +11,13 @@ describe("Node type tests", () => {
     const doc = parseXml("<book />");
     const element = doc.createElement("characters");
 
-    assert.ok(is_dom_node.isNodeLike(element));
-    assert.ok(is_dom_node.isElementNode(element));
-    assert.ok(!is_dom_node.isAttributeNode(doc));
+    assert.ok(isDomNode.isNodeLike(element));
+    assert.ok(isDomNode.isElementNode(element));
+    assert.ok(!isDomNode.isAttributeNode(doc));
 
-    is_dom_node.assertIsElementNode(element);
+    isDomNode.assertIsElementNode(element);
     assert.throws(
-      () => is_dom_node.assertIsAttributeNode(element),
+      () => isDomNode.assertIsAttributeNode(element),
       /Value is not of type ATTRIBUTE_NODE/,
     );
   });
@@ -26,25 +26,25 @@ describe("Node type tests", () => {
     const doc = parseXml("<book />");
     const attribute = doc.createAttribute("name");
 
-    assert.ok(is_dom_node.isNodeLike(attribute));
-    assert.ok(is_dom_node.isAttributeNode(attribute));
-    assert.ok(!is_dom_node.isTextNode(attribute));
+    assert.ok(isDomNode.isNodeLike(attribute));
+    assert.ok(isDomNode.isAttributeNode(attribute));
+    assert.ok(!isDomNode.isTextNode(attribute));
 
-    is_dom_node.assertIsAttributeNode(attribute);
-    assert.throws(() => is_dom_node.assertIsTextNode(attribute), /Value is not of type TEXT_NODE/);
+    isDomNode.assertIsAttributeNode(attribute);
+    assert.throws(() => isDomNode.assertIsTextNode(attribute), /Value is not of type TEXT_NODE/);
   });
 
   it("should correctly identify a Node of type Text", () => {
     const doc = parseXml("<book />");
     const text = doc.createTextNode("Harry Potter");
 
-    assert.ok(is_dom_node.isNodeLike(text));
-    assert.ok(is_dom_node.isTextNode(text));
-    assert.ok(!is_dom_node.isCDATASectionNode(text));
+    assert.ok(isDomNode.isNodeLike(text));
+    assert.ok(isDomNode.isTextNode(text));
+    assert.ok(!isDomNode.isCDATASectionNode(text));
 
-    is_dom_node.assertIsTextNode(text);
+    isDomNode.assertIsTextNode(text);
     assert.throws(
-      () => is_dom_node.assertIsCDATASectionNode(text),
+      () => isDomNode.assertIsCDATASectionNode(text),
       /Value is not of type CDATA_SECTION_NODE/,
     );
   });
@@ -53,40 +53,43 @@ describe("Node type tests", () => {
     const doc = parseXml("<book />");
     const cdata = doc.createCDATASection("Harry Potter");
 
-    assert.ok(is_dom_node.isNodeLike(cdata));
-    assert.ok(is_dom_node.isCDATASectionNode(cdata));
-    assert.ok(!is_dom_node.isProcessingInstructionNode(cdata));
+    assert.ok(isDomNode.isNodeLike(cdata));
+    assert.ok(isDomNode.isCDATASectionNode(cdata));
+    assert.ok(!isDomNode.isProcessingInstructionNode(cdata));
 
-    is_dom_node.assertIsCDATASectionNode(cdata);
+    isDomNode.assertIsCDATASectionNode(cdata);
     assert.throws(
-      () => is_dom_node.assertIsProcessingInstructionNode(cdata),
+      () => isDomNode.assertIsProcessingInstructionNode(cdata),
       /Value is not of type PROCESSING_INSTRUCTION_NODE/,
     );
   });
 
   it("should correctly identify a Node of type ProcessingInstruction", () => {
     const doc = parseXml("<book />");
-    const pi = doc.createProcessingInstruction("xml-stylesheet", 'href="mycss.css" type="text/css"');
+    const pi = doc.createProcessingInstruction(
+      "xml-stylesheet",
+      'href="mycss.css" type="text/css"',
+    );
 
-    assert.ok(is_dom_node.isNodeLike(pi));
-    assert.ok(is_dom_node.isProcessingInstructionNode(pi));
-    assert.ok(!is_dom_node.isCommentNode(pi));
+    assert.ok(isDomNode.isNodeLike(pi));
+    assert.ok(isDomNode.isProcessingInstructionNode(pi));
+    assert.ok(!isDomNode.isCommentNode(pi));
 
-    is_dom_node.assertIsProcessingInstructionNode(pi);
-    assert.throws(() => is_dom_node.assertIsCommentNode(pi), /Value is not of type COMMENT_NODE/);
+    isDomNode.assertIsProcessingInstructionNode(pi);
+    assert.throws(() => isDomNode.assertIsCommentNode(pi), /Value is not of type COMMENT_NODE/);
   });
 
   it("should correctly identify a Node of type Comment", () => {
     const doc = parseXml("<book />");
     const comment = doc.createComment("Harry Potter");
 
-    assert.ok(is_dom_node.isNodeLike(comment));
-    assert.ok(is_dom_node.isCommentNode(comment));
-    assert.ok(!is_dom_node.isDocumentNode(comment));
+    assert.ok(isDomNode.isNodeLike(comment));
+    assert.ok(isDomNode.isCommentNode(comment));
+    assert.ok(!isDomNode.isDocumentNode(comment));
 
-    is_dom_node.assertIsCommentNode(comment);
+    isDomNode.assertIsCommentNode(comment);
     assert.throws(
-      () => is_dom_node.assertIsDocumentNode(comment),
+      () => isDomNode.assertIsDocumentNode(comment),
       /Value is not of type DOCUMENT_NODE/,
     );
   });
@@ -94,13 +97,13 @@ describe("Node type tests", () => {
   it("should correctly identify a Node of type Document", () => {
     const doc = parseXml("<book />");
 
-    assert.ok(is_dom_node.isNodeLike(doc));
-    assert.ok(is_dom_node.isDocumentNode(doc));
-    assert.ok(!is_dom_node.isDocumentTypeNode(doc));
+    assert.ok(isDomNode.isNodeLike(doc));
+    assert.ok(isDomNode.isDocumentNode(doc));
+    assert.ok(!isDomNode.isDocumentTypeNode(doc));
 
-    is_dom_node.assertIsDocumentNode(doc);
+    isDomNode.assertIsDocumentNode(doc);
     assert.throws(
-      () => is_dom_node.assertIsDocumentTypeNode(doc),
+      () => isDomNode.assertIsDocumentTypeNode(doc),
       /Value is not of type DOCUMENT_TYPE_NODE/,
     );
   });
@@ -109,13 +112,13 @@ describe("Node type tests", () => {
     const doc = parseXml("<book />");
     const docType = doc.implementation.createDocumentType("book", "", "");
 
-    assert.ok(is_dom_node.isNodeLike(docType));
-    assert.ok(is_dom_node.isDocumentTypeNode(docType));
-    assert.ok(!is_dom_node.isDocumentFragmentNode(docType));
+    assert.ok(isDomNode.isNodeLike(docType));
+    assert.ok(isDomNode.isDocumentTypeNode(docType));
+    assert.ok(!isDomNode.isDocumentFragmentNode(docType));
 
-    is_dom_node.assertIsDocumentTypeNode(docType);
+    isDomNode.assertIsDocumentTypeNode(docType);
     assert.throws(
-      () => is_dom_node.assertIsDocumentFragmentNode(docType),
+      () => isDomNode.assertIsDocumentFragmentNode(docType),
       /Value is not of type DOCUMENT_FRAGMENT_NODE/,
     );
   });
@@ -124,54 +127,54 @@ describe("Node type tests", () => {
     const doc = parseXml("<book />");
     const fragment = doc.createDocumentFragment();
 
-    assert.ok(is_dom_node.isNodeLike(fragment));
-    assert.ok(is_dom_node.isDocumentFragmentNode(fragment));
-    assert.ok(!is_dom_node.isElementNode(fragment));
+    assert.ok(isDomNode.isNodeLike(fragment));
+    assert.ok(isDomNode.isDocumentFragmentNode(fragment));
+    assert.ok(!isDomNode.isElementNode(fragment));
 
-    is_dom_node.assertIsDocumentFragmentNode(fragment);
+    isDomNode.assertIsDocumentFragmentNode(fragment);
     assert.throws(
-      () => is_dom_node.assertIsElementNode(fragment),
+      () => isDomNode.assertIsElementNode(fragment),
       /Value is not of type ELEMENT_NODE/,
     );
   });
 
   it("should not identify a string as a Node", () => {
-    assert.ok(!is_dom_node.isNodeLike("Harry Potter"));
+    assert.ok(!isDomNode.isNodeLike("Harry Potter"));
 
     assert.throws(
-      () => is_dom_node.assertIsNodeLike("Harry Potter"),
+      () => isDomNode.assertIsNodeLike("Harry Potter"),
       /Value is not a Node-like object/,
     );
   });
 
   it("should not identify a number as a Node", () => {
-    assert.ok(!is_dom_node.isNodeLike(45));
+    assert.ok(!isDomNode.isNodeLike(45));
 
-    assert.throws(() => is_dom_node.assertIsNodeLike(45), /Value is not a Node-like object/);
+    assert.throws(() => isDomNode.assertIsNodeLike(45), /Value is not a Node-like object/);
   });
 
   it("should not identify a boolean as a Node", () => {
-    assert.ok(!is_dom_node.isNodeLike(true));
+    assert.ok(!isDomNode.isNodeLike(true));
 
-    assert.throws(() => is_dom_node.assertIsNodeLike(true), /Value is not a Node-like object/);
+    assert.throws(() => isDomNode.assertIsNodeLike(true), /Value is not a Node-like object/);
   });
 
   it("should not identify null as a Node", () => {
-    assert.ok(!is_dom_node.isNodeLike(null));
+    assert.ok(!isDomNode.isNodeLike(null));
 
-    assert.throws(() => is_dom_node.assertIsNodeLike(null), /Value is not a Node-like object/);
+    assert.throws(() => isDomNode.assertIsNodeLike(null), /Value is not a Node-like object/);
   });
 
   it("should not identify undefined as a Node", () => {
-    assert.ok(!is_dom_node.isNodeLike(undefined));
+    assert.ok(!isDomNode.isNodeLike(undefined));
 
-    assert.throws(() => is_dom_node.assertIsNodeLike(undefined), /Value is not a Node-like object/);
+    assert.throws(() => isDomNode.assertIsNodeLike(undefined), /Value is not a Node-like object/);
   });
 
   it("should not identify an array as a Node", () => {
-    assert.ok(!is_dom_node.isNodeLike([]));
+    assert.ok(!isDomNode.isNodeLike([]));
 
-    assert.throws(() => is_dom_node.assertIsNodeLike([]), /Value is not a Node-like object/);
+    assert.throws(() => isDomNode.assertIsNodeLike([]), /Value is not a Node-like object/);
   });
 
   it("should identify an array of Nodes as such", () => {
@@ -179,21 +182,21 @@ describe("Node type tests", () => {
     const fragment = doc.createDocumentFragment();
     const nodes = [doc, fragment];
 
-    assert.ok(is_dom_node.isArrayOfNodes(nodes));
-    assert.ok(!is_dom_node.isNodeLike(nodes));
+    assert.ok(isDomNode.isArrayOfNodes(nodes));
+    assert.ok(!isDomNode.isNodeLike(nodes));
 
-    is_dom_node.assertIsArrayOfNodes(nodes);
-    assert.throws(() => is_dom_node.assertIsNodeLike(nodes), /Value is not a Node-like object/);
+    isDomNode.assertIsArrayOfNodes(nodes);
+    assert.throws(() => isDomNode.assertIsNodeLike(nodes), /Value is not a Node-like object/);
   });
 
   it("should not identify an array of non-Nodes as an array of Nodes", () => {
     const nodes = ["Harry Potter", 45];
 
-    assert.ok(!is_dom_node.isArrayOfNodes(nodes));
-    assert.ok(!is_dom_node.isNodeLike(nodes));
+    assert.ok(!isDomNode.isArrayOfNodes(nodes));
+    assert.ok(!isDomNode.isNodeLike(nodes));
 
-    assert.throws(() => is_dom_node.assertIsArrayOfNodes(nodes), /Value is not an array of Nodes/);
-    assert.throws(() => is_dom_node.assertIsNodeLike(nodes), /Value is not a Node-like object/);
+    assert.throws(() => isDomNode.assertIsArrayOfNodes(nodes), /Value is not an array of Nodes/);
+    assert.throws(() => isDomNode.assertIsNodeLike(nodes), /Value is not a Node-like object/);
   });
 
   it("should not identify an array of mixed Nodes and non-Nodes as an array of Nodes", () => {
@@ -201,10 +204,10 @@ describe("Node type tests", () => {
     const fragment = doc.createDocumentFragment();
     const nodes = [doc, fragment, "Harry Potter"];
 
-    assert.ok(!is_dom_node.isArrayOfNodes(nodes));
-    assert.ok(!is_dom_node.isNodeLike(nodes));
+    assert.ok(!isDomNode.isArrayOfNodes(nodes));
+    assert.ok(!isDomNode.isNodeLike(nodes));
 
-    assert.throws(() => is_dom_node.assertIsArrayOfNodes(nodes), /Value is not an array of Nodes/);
-    assert.throws(() => is_dom_node.assertIsNodeLike(nodes), /Value is not a Node-like object/);
+    assert.throws(() => isDomNode.assertIsArrayOfNodes(nodes), /Value is not an array of Nodes/);
+    assert.throws(() => isDomNode.assertIsNodeLike(nodes), /Value is not a Node-like object/);
   });
 });
