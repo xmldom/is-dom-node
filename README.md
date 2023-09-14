@@ -9,7 +9,6 @@
 
 `@xmldom/is-dom-node` is a versatile TypeScript library designed to provide robust utility functions for working with DOM nodes. Whether you're developing for the browser or dealing with XML in NodeJS, this library offers a comprehensive set of functions for checking and asserting various types of DOM nodes. It's particularly useful when working with NodeJS libraries like [xpath](https://www.npmjs.com/package/xpath) and [@xmldom/xmldom](https://www.npmjs.com/package/@xmldom/xmldom), as it can validate the objects returned by these libraries.
 
-
 ## Installation
 
 ```shell
@@ -21,16 +20,16 @@ npm install @xmldom/is-dom-node
 Import the library and use it as follows:
 
 ```javascript
-import * as isDomNode from '@xmldom/is-dom-node';
+import * as isDomNode from "@xmldom/is-dom-node";
 
-const element = document.createElement('div');
+const element = document.createElement("div");
 const result = isDomNode.isElementNode(element); // Output: true
 ```
 
 ### TypeScript Example
 
 ```typescript
-import * as isDomNode from '@xmldom/is-dom-node';
+import * as isDomNode from "@xmldom/is-dom-node";
 
 function handleNode(node: Node) {
   if (isDomNode.isElementNode(node)) {
