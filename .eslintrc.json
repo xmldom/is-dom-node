@@ -9,7 +9,8 @@
   "plugins": ["@typescript-eslint", "deprecation"],
   "parserOptions": {
     "ecmaVersion": 6,
-    "project": "./tsconfig.eslint.json"
+    "project": "./tsconfig.eslint.json",
+    "ext": ".ts"
   },
   "extends": [
     "eslint:recommended",
