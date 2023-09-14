@@ -1,0 +1,55 @@
+name: Test Status
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test Code
+    env:
+      CI: true
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16, 18, 20]
+        experimental: [false]
+        include:
+          - os: ubuntu-latest
+            node-version: latest
+            experimental: true
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm test
+      - run: npm update
+      - run: npm ci
+      - run: npm test
+      - name: Codecov
+        uses: codecov/codecov-action@v3.1.4
+        with:
+          verbose: true
+
+  lint:
+    name: Lint Code
+    env:
+      CI: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+      - run: |
+          npm ci 
+          npm run lint
