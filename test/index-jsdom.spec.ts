@@ -46,6 +46,8 @@ describe("Node type tests with jsdom", () => {
   });
 
   it("should correctly identify a Node of type CDATASection", () => {
+    const dom = new JSDOM('<html />', { contentType: "application/xml" });
+    const document = dom.window.document;
     const cdata = document.createCDATASection("Harry Potter");
 
     assert.ok(isDomNode.isNodeLike(cdata));
