@@ -3,10 +3,9 @@ import assert from "assert";
 import { DOMParser } from "@xmldom/xmldom";
 
 const parser = new DOMParser();
-
 const parseXml = (xml: string, mimeType = "text/xml") => parser.parseFromString(xml, mimeType);
 
-describe("Node type tests", () => {
+describe("Node type tests with xmldom", () => {
   it("should correctly identify a Node of type Element", () => {
     const doc = parseXml("<book />");
     const element = doc.createElement("characters");
@@ -136,45 +135,6 @@ describe("Node type tests", () => {
       () => isDomNode.assertIsElementNode(fragment),
       /Value is not of type ELEMENT_NODE/,
     );
-  });
-
-  it("should not identify a string as a Node", () => {
-    assert.ok(!isDomNode.isNodeLike("Harry Potter"));
-
-    assert.throws(
-      () => isDomNode.assertIsNodeLike("Harry Potter"),
-      /Value is not a Node-like object/,
-    );
-  });
-
-  it("should not identify a number as a Node", () => {
-    assert.ok(!isDomNode.isNodeLike(45));
-
-    assert.throws(() => isDomNode.assertIsNodeLike(45), /Value is not a Node-like object/);
-  });
-
-  it("should not identify a boolean as a Node", () => {
-    assert.ok(!isDomNode.isNodeLike(true));
-
-    assert.throws(() => isDomNode.assertIsNodeLike(true), /Value is not a Node-like object/);
-  });
-
-  it("should not identify null as a Node", () => {
-    assert.ok(!isDomNode.isNodeLike(null));
-
-    assert.throws(() => isDomNode.assertIsNodeLike(null), /Value is not a Node-like object/);
-  });
-
-  it("should not identify undefined as a Node", () => {
-    assert.ok(!isDomNode.isNodeLike(undefined));
-
-    assert.throws(() => isDomNode.assertIsNodeLike(undefined), /Value is not a Node-like object/);
-  });
-
-  it("should not identify an array as a Node", () => {
-    assert.ok(!isDomNode.isNodeLike([]));
-
-    assert.throws(() => isDomNode.assertIsNodeLike([]), /Value is not a Node-like object/);
   });
 
   it("should identify an array of Nodes as such", () => {
