@@ -2,9 +2,9 @@ name: Test Status
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: ["main"]
   pull_request:
-    branches: [main]
+    branches: ["main"]
 
 jobs:
   test:
@@ -42,8 +42,6 @@ jobs:
 
   lint:
     name: Lint Code
-    env:
-      CI: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
