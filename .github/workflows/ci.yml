@@ -35,10 +35,10 @@ jobs:
       - run: npm update
       - run: npm ci
       - run: npm test
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.4
-        with:
-          verbose: true
+      # - name: Codecov
+      #   uses: codecov/codecov-action@v3.1.4
+      #   with:
+      #     verbose: true
 
   lint:
     name: Lint Code
