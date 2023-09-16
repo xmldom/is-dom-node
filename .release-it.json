@@ -1,5 +1,12 @@
 {
   "npm": {
     "publish": false
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}"
+  },
+  "hooks": {
+    "after:bump": "npm run changelog"
   }
 }
