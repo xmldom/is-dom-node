@@ -67,6 +67,7 @@
     "access": "public"
   },
   "npm": {
-    "publish": false
+    "publish": false,
+    "skipChecks": true
   }
 }
