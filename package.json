@@ -65,9 +65,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "npm": {
-    "publish": false,
-    "skipChecks": true
   }
 }
