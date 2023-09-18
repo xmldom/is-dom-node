@@ -1,6 +1,6 @@
 {
   "name": "is-dom-node",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "TypeScript helper functions to narrow the type of object to a Node descendant",
   "main": "dist/index.js",
   "scripts": {
