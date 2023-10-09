@@ -1,6 +1,6 @@
 {
   "name": "@xmldom/is-dom-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TypeScript helper functions to narrow the type of object to a Node descendant",
   "main": "dist/index.js",
   "scripts": {

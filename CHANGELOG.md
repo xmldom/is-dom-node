@@ -1,6 +1,20 @@
 # Changelog
 
-## 1.0.0 (2023-09-18)
+## 1.0.1 (2023-10-09)
+
+### 🔗 Dependencies
+
+- [**dependencies**] Update dependencies [#25](https://github.com/xmldom/is-dom-node/pull/25)
+
+### ⚙️ Technical Tasks
+
+- [**chore**] Allow release-it to release to npm [#24](https://github.com/xmldom/is-dom-node/pull/24)
+- [**chore**] Use correct badge in readme for build status [#23](https://github.com/xmldom/is-dom-node/pull/23)
+- [**chore**] Use @xmldom scope [#22](https://github.com/xmldom/is-dom-node/pull/22)
+
+---
+
+## v1.0.0 (2023-09-18)
 
 ### 🚀 Minor Changes
 
