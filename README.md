@@ -1,6 +1,6 @@
 # is-dom-node
 
-![Build Status](https://img.shields.io/travis/xmldom/is-dom-node)
+![Build Status](https://img.shields.io/github/actions/workflow/status/xmldom/is-dom-node/ci.yml)
 ![Code Coverage](https://img.shields.io/codecov/c/github/xmldom/is-dom-node)
 ![NPM Version](https://img.shields.io/npm/v/@xmldom/is-dom-node)
 ![License](https://img.shields.io/npm/l/@xmldom/is-dom-node)
