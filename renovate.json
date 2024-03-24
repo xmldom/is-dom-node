@@ -1,5 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "labels": ["dependencies", "renovate"]
+  "extends": ["config:recommended", "schedule:monthly"],
+  "labels": ["dependencies", "renovate"],
+  "separateMajorMinor": true,
+  "separateMultipleMajor": true,
+  "packageRules": [
+    {
+      "matchFileNames": ["package.json"],
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "all devDependencies"
+    },
+    {
+      "matchUpdateTypes": "major",
+      "dependencyDashboardApproval": true
+    }
+  ]
 }
