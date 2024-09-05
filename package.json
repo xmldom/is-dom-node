@@ -46,7 +46,7 @@
     "@types/node": "^16.18.58",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
-    "@xmldom/xmldom": "^0.8.10",
+    "@xmldom/xmldom": "^0.9.0",
     "choma": "^1.2.1",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
